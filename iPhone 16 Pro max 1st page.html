@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page 2</title>
+    <style>
+        /* Green Image ko responsive banane ke liye */
+        img {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Back arrow button ka style */
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Slider container */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Image inside slider */
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        /* Countdown Timer with Border */
+        .countdown {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: red;
+            text-align: center;
+            border: 2px solid black;
+            padding: 10px;
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        /* Stable Bottom Buttons */
+        .bottom-buttons {
+            position: fixed;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            padding: 10px 0;
+            z-index: 999;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow to make it pop */
+        }
+
+        .bottom-buttons .button {
+            position: relative;
+            width: 45%;
+            max-width: 180px;
+            text-align: center;
+            background-color: #ff6200;
+            padding: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            border: none; /* Border removed */
+        }
+
+        .bottom-buttons .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .bottom-buttons .button-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .bottom-buttons .button:hover .button-text {
+            opacity: 1;
+        }
+
+        .bottom-buttons img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .bottom-buttons .button:hover img {
+            opacity: 0.5;
+        }
+
+        @media (min-width: 768px) {
+            .bottom-buttons .button {
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imghippo.com/files/sNAe8156rYU.jpg" alt="Product Image">
+        <button class="back-arrow" onclick="window.history.back()">←</button>
+    </header>
+
+    <!-- Slider Section -->
+    <div class="slider">
+        <div class="slides">
+            <img src="https://i.imghippo.com/files/CuKx1838TLI.jpg" alt="CuKx1838TLI.jpg">
+            <img src="https://i.imghippo.com/files/dEMD3179cO.jpg" alt="dEMD3179cO.jpg">
+            <img src="https://i.imghippo.com/files/JJg1753mfc.jpg" alt="JJg1753mfc.jpg">
+            <img src="https://i.imghippo.com/files/lsTE9188Bx.jpg" alt="lsTE9188Bx.jpg">
+            <img src="https://i.imghippo.com/files/UD2187BM.jpg" alt="UD2187BM.jpg">
+        </div>
+    </div>
+
+    <!-- Image Between Slider and Countdown -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/aEas6508mc.jpg" alt="aEas6508mc.jpg" style="width: 100%; height: auto;">
+    </div>
+
+    <!-- Updated Image between Slider and Countdown -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/lTQB4184ao.jpg" alt="lTQB4184ao.jpg" style="width: 100%; height: auto;">
+    </div>
+
+    <!-- Countdown Timer with Border -->
+    <div class="countdown">
+        Sell in <span id="timer">15:00</span> minutes
+    </div>
+
+    <!-- Stable Bottom Buttons -->
+    <div class="bottom-buttons">
+        <a href="iPhone 16 Pro max 2d page.html" class="button">
+            <img src="https://i.imghippo.com/files/Rmbk1815Js.jpg" alt="Button 1">
+            <span class="button-text">Shop Now</span>
+        </a>
+        <a href="iPhone 16 Pro max 2d page.html" class="button">
+            <img src="https://i.imghippo.com/files/DJJ9023nq.jpg" alt="Button 2">
+            <span class="button-text">Shop Now</span>
+        </a>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slides img').length;
+            slideIndex += direction;
+
+            if (slideIndex >= totalSlides) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = totalSlides - 1;
+            }
+
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        // Auto slide functionality
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+
+        // Countdown Timer Functionality
+        let timeLeft = 15 * 60;
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.textContent = `${minutes}:${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(timerInterval);
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>

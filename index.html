@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Clone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #2874f0;
+            color: white;
+        }
+
+        .navbar .logo img {
+            max-height: 40px;
+        }
+
+        .search-bar {
+            width: 60%;
+            padding: 8px;
+        }
+
+        .icons span {
+            font-size: 20px;
+            margin-left: 15px;
+            color: black;
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .slides {
+            display: flex;
+            width: 700%;
+            animation: slide 10s infinite;
+        }
+
+        .slide {
+            flex: 0 0 14.285%;
+            height: 200px;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            14.285% {
+                transform: translateX(-14.285%);
+            }
+            28.571% {
+                transform: translateX(-28.571%);
+            }
+            42.857% {
+                transform: translateX(-42.857%);
+            }
+            57.143% {
+                transform: translateX(-57.143%);
+            }
+            71.429% {
+                transform: translateX(-71.429%);
+            }
+            85.714% {
+                transform: translateX(-85.714%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 48%; /* Two products per row */
+            height: 420px; /* Adjusted height to keep all boxes same */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: contain;
+        }
+
+        .product-card p {
+            margin: 10px 0;
+        }
+
+        .percentage {
+            color: green;
+        }
+
+        .assured-img {
+            width: 50px;
+        }
+
+        .rating {
+            color: black;
+            font-size: 16px;
+        }
+
+        .product-name, .price, .delivery {
+            color: black;
+        }
+
+        /* For Right-aligned products */
+        .product-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .product-column {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://i.imghippo.com/files/cO6550Rwk.png" alt="Flipkart Logo">
+        </div>
+        <input type="text" class="search-bar" placeholder="Search for Products, Brands and More">
+        <div class="icons">
+            <span>☰</span>
+            <span>🛒</span>
+        </div>
+    </header>
+
+    <!-- Image under header -->
+    <div style="text-align:center;">
+        <img src="https://i.imghippo.com/files/nTws3774mzI.jpg" alt="Promo Image" style="width: 100%; height: auto;">
+    </div>
+
+    <!-- Image Slider -->
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/dxC1456Ic.jpg" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/zqjt3161SL.jpg" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/dLtJ6764DX.webp" alt="Image 3">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/ex8361jOM.jpg" alt="Image 4">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/xXuF1131FU.jpg" alt="Image 5">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/ytzO2145XeA.jpg" alt="Image 6">
+            </div>
+            <div class="slide">
+                <img src="https://i.imghippo.com/files/mQPm7780gA.jpg" alt="Image 7">
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <section class="products">
+        <!-- Row 1 - Realme & Sony (Aligned in same row) -->
+        <div class="product-row">
+            <div class="product-card">
+                <a href="2d product 1st page.html">
+                    <img src="https://i.imghippo.com/files/eUvI5183nDM.webp" alt="realme 13 Pro+ 5G">
+                    <p class="product-name">realme 13 Pro+ 5G (12 GB RAM 512 GB Storage, Monet Purple, New)</p>
+                    <p><span class="percentage">95% Off</span> <del>₹35,999.00</del></p>
+                    <p class="price">₹649.00</p>
+                    <p><img src="https://i.imghippo.com/files/Ema5673HUY.png" alt="Assured" class="assured-img"></p>
+                    <p class="delivery">Free Delivery in Two Days</p>
+                    <p class="rating">4.7 ⭐</p>
+                </a>
+            </div>
+            <div class="product-card">
+                <a href="1st product 1st page.html">
+                    <img src="https://i.imghippo.com/files/TJPv3007ZN.png" alt="Sony Speaker">
+                    <p class="product-name">SONY SA-D40M2 NEW...</p>
+                    <p><span class="percentage">95% Off</span> <del>₹11,990.00</del></p>
+                    <p class="price">₹499.00</p>
+                    <p><img src="https://i.imghippo.com/files/Ema5673HUY.png" alt="Assured" class="assured-img"></p>
+                    <p class="delivery">Free Delivery in Two Days</p>
+                    <p class="rating">4.7 ⭐</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Row 2 - OnePlus & Samsung (Aligned in same row) -->
+        <div class="product-row">
+            <div class="product-card">
+                <a href="3d product 1st page.html">
+                    <img src="https://i.imghippo.com/files/LasO8091Lcg.webp" alt="OnePlus 11r">
+                    <p class="product-name">OnePlus 11r</p>
+                    <p><span class="percentage">95% Off</span> <del>₹25,999.00</del></p>
+                    <p class="price">₹649.00</p>
+                    <p><img src="https://i.imghippo.com/files/Ema5673HUY.png" alt="Assured" class="assured-img"></p>
+                    <p class="delivery">Free Delivery in Two Days</p>
+                    <p class="rating">4.5 ⭐</p>
+                </a>
+            </div>
+            <div class="product-card">
+                <a href="SAMSUNG S22 ULTRA 1ST PAGE.html">
+                    <img src="https://i.imghippo.com/files/PFkS1783Tps.jpg" alt="SAMSUNG Galaxy S22 Ultra 5G">
+                    <p class="product-name">SAMSUNG Galaxy S22 Ultra 5G (Phantom Black, 256 GB) (12 GB RAM)</p>
+                    <p><span class="percentage">99% Off</span> <del>₹1,32,990.00</del></p>
+                    <p class="price">₹349.00</p>
+                    <p><img src="https://i.imghippo.com/files/Ema5673HUY.png" alt="Assured" class="assured-img"></p>
+                    <p class="delivery">Free Delivery in Two Days</p>
+                    <p class="rating">4.8 ⭐</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Row 3 - Apple iPhone -->
+        <div class="product-row">
+            <div class="product-card">
+                <a href="iPhone 16 Pro max 1st page.html">
+                    <img src="https://i.imghippo.com/files/egD7767Np.jpg" alt="Apple iPhone 16 Pro Max">
+                    <p class="product-name">Apple iPhone 16 Pro Max (512 GB)</p>
+                    <p><span class="percentage">99% Off</span> <del>₹1,30,999.00</del></p>
+                    <p class="price">₹999.00</p>
+                    <p><img src="https://i.imghippo.com/files/Ema5673HUY.png" alt="Assured" class="assured-img"></p>
+                    <p class="delivery">Free Delivery in Two Days</p>
+                    <p class="rating">4.7 ⭐</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

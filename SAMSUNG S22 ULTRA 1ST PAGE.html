@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page 2</title>
+    <style>
+        /* Green Image ko responsive banane ke liye */
+        img {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Back arrow button ka style */
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Fixed Buttons Section */
+        .buttons {
+            position: fixed;
+            bottom: 10px; /* Niche thoda space dene ke liye */
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Buttons ko center mein align karne ke liye */
+            z-index: 999;
+        }
+
+        .button img {
+            width: 40%; /* Buttons ke images ka size */
+            cursor: pointer;
+            margin: 0 10px; /* Buttons ke beech thoda space */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imghippo.com/files/sNAe8156rYU.jpg" alt="Product Image">
+        <button class="back-arrow" onclick="window.history.back()">←</button>
+    </header>
+
+    <!-- Image below header -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/KO7690f.jpg" alt="Additional Image">
+    </div>
+
+    <!-- Image below the previous image -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/XUP8727j.jpg" alt="Second Additional Image">
+    </div>
+
+    <!-- Fixed Buttons Section with Images -->
+    <div class="buttons">
+        <a href="cart.html" class="add-to-cart">
+            <img src="https://i.imghippo.com/files/ucA7990K.jpg" alt="Add to Cart Button">
+        </a>
+        <a href="SAMSUNG S22 ULTRA 2D PAGE.html" class="buy-now"> <!-- Updated link -->
+            <img src="https://i.imghippo.com/files/esX4847MPA.jpg" alt="Buy Now Button">
+        </a>
+    </div>
+
+</body>
+</html>

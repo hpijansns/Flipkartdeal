@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page 2</title>
+    <style>
+        /* Green Image ko responsive banane ke liye */
+        img {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Back arrow button ka style */
+        .back-arrow {
+            position: absolute;
+            top: 10px; /* Image ke upar se thoda space */
+            left: 10px; /* Left se thoda space */
+            font-size: 30px;
+            color: white;
+            background: transparent; /* No background */
+            border: none; /* No border */
+            cursor: pointer;
+        }
+
+        /* Slider container */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-top: 5px solid black; /* Border above the slider */
+            border-bottom: 5px solid black; /* Border below the slider */
+        }
+
+        /* Individual slides */
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /* Countdown timer with border */
+        .countdown {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: red;
+            text-align: center;
+            border: 2px solid black; /* Border added around the text */
+            padding: 10px;
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        /* Fixed Buttons Section */
+        .buttons {
+            position: fixed; /* Buttons fixed at bottom */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Buttons stacked vertically */
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+            z-index: 999;
+            padding: 10px 0;
+        }
+
+        .button {
+            width: 90%; /* Buttons will take 90% of the screen width */
+            margin: 10px auto; /* Centering the buttons */
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            background-color: #ff8c00; /* Orange like Flipkart */
+            color: white;
+        }
+
+        /* Buy Now Button */
+        .buy-now {
+            background-color: #2874f0; /* Blue like Flipkart */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imghippo.com/files/sNAe8156rYU.jpg" alt="Product Image">
+        <button class="back-arrow" onclick="window.history.back()">←</button>
+    </header>
+
+    <!-- Slider Section -->
+    <div class="slider">
+        <div class="slides">
+            <img src="https://i.imghippo.com/files/ygpf7925st.png" alt="Slide 1">
+            <img src="https://i.imghippo.com/files/x1162Zw.jpg" alt="Slide 2">
+            <img src="https://i.imghippo.com/files/jTp8193PsY.jpg" alt="Slide 3">
+        </div>
+    </div>
+
+    <!-- Countdown Timer with Border -->
+    <div class="countdown">
+        Sell in <span id="timer">15:00</span> minutes
+    </div>
+
+    <!-- Fixed Buttons Section -->
+    <div class="buttons">
+        <!-- Add to Cart Button Redirect -->
+        <a href="cart.html">
+            <button class="button add-to-cart">Add to Cart</button>
+        </a>
+
+        <!-- Buy Now Button Redirect to 1st-product-2d-page.html -->
+        <a href="1st product 2d page.html">
+            <button class="button buy-now">Buy Now</button>
+        </a>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slides img').length;
+            slideIndex += direction;
+
+            if (slideIndex >= totalSlides) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = totalSlides - 1;
+            }
+
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        // Auto slide functionality
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000); // 3000 milliseconds = 3 seconds
+
+        // Countdown Timer Functionality
+        let timeLeft = 15 * 60; // 15 minutes in seconds
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+
+            // Format minutes and seconds
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.textContent = `${minutes}:${seconds}`;
+
+            // Decrease the timer
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(timerInterval); // Stop the timer when it reaches 0
+            }
+        }
+
+        // Start countdown timer
+        const timerInterval = setInterval(updateTimer, 1000); // Update every second
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page 2</title>
+    <style>
+        /* Green Image ko responsive banane ke liye */
+        img {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        /* Back arrow button ka style */
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 30px;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Slider container */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Image inside slider */
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        /* Countdown Timer with Border */
+        .countdown {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: red;
+            text-align: center;
+            border: 2px solid black;
+            padding: 10px;
+            width: 200px;
+            margin: 20px auto;
+        }
+
+        /* Fixed Buttons Section */
+        .buttons {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 999;
+            padding: 10px 0;
+        }
+
+        .button {
+            width: 90%;
+            margin: 10px auto;
+            padding: 16px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            background-color: #ff8c00;
+            color: white;
+        }
+
+        .buy-now {
+            background-color: #2874f0;
+            color: white;
+        }
+
+        /* Media Queries for Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .slider {
+                max-width: 100%;
+                height: 400px;
+            }
+
+            .countdown {
+                font-size: 16px;
+                width: 90%;
+            }
+
+            .button {
+                font-size: 16px;
+                padding: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .slides img {
+                object-fit: contain;
+                height: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.imghippo.com/files/sNAe8156rYU.jpg" alt="Product Image">
+        <button class="back-arrow" onclick="window.history.back()">←</button>
+    </header>
+
+    <!-- Slider Section -->
+    <div class="slider">
+        <div class="slides">
+            <img src="https://i.imghippo.com/files/YDt3169rsE.webp" alt="YDt3169rsE.webp">
+            <img src="https://i.imghippo.com/files/DrhL8857kY.webp" alt="DrhL8857kY.webp">
+            <img src="https://i.imghippo.com/files/nl7574ChQ.webp" alt="nl7574ChQ.webp">
+            <img src="https://i.imghippo.com/files/ZIBJ1212lj.webp" alt="ZIBJ1212lj.webp">
+            <img src="https://i.imghippo.com/files/VKQ2342cQ.webp" alt="VKQ2342cQ.webp">
+            <img src="https://i.imghippo.com/files/kCeB3465rU.webp" alt="kCeB3465rU.webp">
+        </div>
+    </div>
+
+    <!-- Updated Image between Slider and Countdown -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/DEP7707UNE.jpg" alt="DEP7707UNE.jpg" style="width: 100%; height: auto;">
+    </div>
+
+    <!-- Countdown Timer with Border -->
+    <div class="countdown">
+        Sell in <span id="timer">15:00</span> minutes
+    </div>
+
+    <!-- Updated Image Below Sales -->
+    <div style="text-align: center; margin-top: 20px;">
+        <img src="https://i.imghippo.com/files/Mzao3928ie.png" alt="Mzao3928ie.png" style="width: 100%; height: auto;">
+    </div>
+
+    <!-- Fixed Buttons Section -->
+    <div class="buttons">
+        <a href="cart.html">
+            <button class="button add-to-cart">Add to Cart</button>
+        </a>
+        <a href="3d product 2d page.html">
+            <button class="button buy-now">Buy Now</button>
+        </a>
+    </div>
+
+    <script>
+        let slideIndex = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slides img').length;
+            slideIndex += direction;
+
+            if (slideIndex >= totalSlides) {
+                slideIndex = 0;
+            } else if (slideIndex < 0) {
+                slideIndex = totalSlides - 1;
+            }
+
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        // Auto slide functionality
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000);
+
+        // Countdown Timer Functionality
+        let timeLeft = 15 * 60;
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.textContent = `${minutes}:${seconds}`;
+
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(timerInterval);
+            }
+        }
+
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>

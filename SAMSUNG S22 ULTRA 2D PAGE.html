@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Delivery Address</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .steps div {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .steps div:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            background: #ccc;
+            width: 100%;
+            top: 50%;
+            left: 100%;
+        }
+        .steps div:last-child:after {
+            display: none;
+        }
+        .steps div span {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #007bff;
+            color: #fff;
+            border-radius: 50%;
+            line-height: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            background: #ff5722;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            background: #e64a19;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Add Delivery Address</h2>
+        </div>
+        <div class="steps">
+            <div><span>1</span><br>Address</div>
+            <div><span>2</span><br>Order Summary</div>
+            <div><span>3</span><br>Payment</div>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="text" id="mobileNumber" placeholder="Mobile Number">
+            </div>
+            <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" placeholder="Pincode">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="City">
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" id="state" placeholder="Enter your state">
+            </div>
+            <div class="form-group">
+                <label for="houseNumber">House No., Building Name</label>
+                <input type="text" id="houseNumber" placeholder="House No., Building Name">
+            </div>
+            <div class="form-group">
+                <label for="roadName">Road Name, Area, Colony</label>
+                <input type="text" id="roadName" placeholder="Road Name, Area, Colony">
+            </div>
+            <button type="button" class="btn" id="buyButton">Buy</button>
+        </form>
+    </div>
+
+    <script>
+        // Razorpay Button Click
+        document.querySelector('#buyButton').addEventListener('click', function(event) {
+            event.preventDefault();  // Prevent form submission to handle manually
+
+            // Get the values of the fields
+            var fullName = document.getElementById('fullName').value;
+            var mobileNumber = document.getElementById('mobileNumber').value;
+            var pincode = document.getElementById('pincode').value;
+            var city = document.getElementById('city').value;
+            var state = document.getElementById('state').value;
+            var houseNumber = document.getElementById('houseNumber').value;
+            var roadName = document.getElementById('roadName').value;
+
+            // Check if all fields are filled
+            if (fullName && mobileNumber && pincode && city && state && houseNumber && roadName) {
+                var options = {
+                    "key": "rzp_live_elxzEEFkwxBLHR", // Your Razorpay API key
+                    "amount": 49900,  // Amount in paise (499 Rs)
+                    "currency": "INR",
+                    "name": "Flipkart Official",
+                    "description": "Product Purchase",
+                    "image": "https://www.flipkart.com/favicon.ico", // Optional: Flipkart logo
+                    "prefill": {
+                        "name": fullName,
+                        "email": "", // Optional email
+                        "contact": mobileNumber
+                    },
+                    "handler": function (response) {
+                        alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+                        window.location.href = "paymentPage.html"; // Redirect after payment
+                    },
+                    "theme": {
+                        "color": "#ff5722"
+                    }
+                };
+
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            } else {
+                alert('Please fill all the fields!');
+            }
+        });
+    </script>
+</body>
+</html>
